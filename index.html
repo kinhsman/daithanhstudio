@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đại Thành Studio - Photography Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --gold: hsl(46, 77%, 52%);
+      --white: #ffffff;
+      --offwhite: hsl(0, 0%, 96%);
+      --black: #000000;
+      --dark-bg: hsl(240, 6%, 10%);
+      --dark-gray: hsl(240, 5%, 12%);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: #000;
+      background-color: var(--white);
+    }
+    
+    body.dark {
+      background-color: var(--dark-bg);
+      color: var(--white);
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header {
+      position: fixed;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(5px);
+      z-index: 100;
+      transition: all 0.3s;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    body.dark header {
+      background-color: rgba(30, 30, 35, 0.9);
+    }
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+    
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+    }
+    
+    .logo span.highlight {
+      color: var(--gold);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+    
+    .nav-links a {
+      font-family: 'Montserrat', sans-serif;
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 1px;
+      color: #000;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    body.dark .nav-links a {
+      color: var(--white);
+    }
+    
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+    
+    .theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      color: inherit;
+    }
+    
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: inherit;
+    }
+    
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    
+    .hero-content {
+      text-align: center;
+      color: white;
+      z-index: 1;
+      max-width: 700px;
+    }
+    
+    .hero-content h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    
+    .hero-content p {
+      font-size: 18px;
+      margin-bottom: 30px;
+      font-weight: 300;
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: var(--gold);
+      color: black;
+      padding: 12px 30px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    
+    .btn:hover {
+      background-color: rgba(222, 188, 70, 0.9);
+    }
+    
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    .scroll-indicator p {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+    
+    .scroll-indicator i {
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+    
+    .section {
+      padding: 100px 0;
+    }
+    
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: var(--gold);
+    }
+    
+    .about-content {
+      display: flex;
+      gap: 50px;
+      align-items: center;
+    }
+    
+    .about-image {
+      flex: 1;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .about-text {
+      flex: 1;
+    }
+    
+    .about-text h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    
+    .about-text p {
+      margin-bottom: 15px;
+      line-height: 1.7;
+    }
+    
+    .gallery-filters {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .filter-btn {
+      font-family: 'Montserrat', sans-serif;
+      padding: 8px 20px;
+      background: none;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+      color: #000;
+    }
+    
+    body.dark .filter-btn {
+      border-color: #444;
+      color: var(--white);
+    }
+    
+    .filter-btn.active, .filter-btn:hover {
+      background-color: var(--gold);
+      border-color: var(--gold);
+      color: black;
+    }
+    
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      cursor: pointer;
+      height: 300px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    
+    .gallery-item:hover {
+      transform: scale(1.03);
+      opacity: 0.9;
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .back-to-gallery {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background-color: var(--gold);
+      color: black;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 99;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s;
+    }
+    
+    .back-to-gallery.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .contact {
+      background-color: var(--offwhite);
+    }
+    
+    body.dark .contact {
+      background-color: var(--dark-gray);
+    }
+    
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-label {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      margin-bottom: 5px;
+    }
+    
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: white;
+    }
+    
+    body.dark .form-input, body.dark .form-textarea {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: #444;
+      color: white;
+    }
+    
+    .form-textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .submit-btn {
+      background-color: var(--gold);
+      color: black;
+      border: none;
+      padding: 12px 30px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .submit-btn:hover {
+      background-color: rgba(222, 188, 70, 0.9);
+    }
+    
+    footer {
+      background-color: #0e0e0e;
+      color: white;
+      padding: 60px 0 30px;
+    }
+    
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+    
+    .footer-column {
+      width: 250px;
+      margin-bottom: 30px;
+    }
+    
+    .footer-column h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .footer-column h4::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background-color: var(--gold);
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+      color: #aaa;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-links a {
+      color: white;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+    
+    .social-links a:hover {
+      color: var(--gold);
+    }
+    
+    .copyright {
+      text-align: center;
+      color: #777;
+      padding-top: 20px;
+      border-top: 1px solid #222;
+    }
+    
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .about-content {
+        flex-direction: column;
+      }
+      
+      .hero-content h1 {
+        font-size: 36px;
+      }
+      
+      .section-title {
+        font-size: 28px;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+      
+      .footer-column {
+        width: 100%;
+        margin-bottom: 40px;
+      }
+    }
+    
+    .mobile-menu {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      display: none;
+      z-index: 99;
+    }
+    
+    body.dark .mobile-menu {
+      background-color: var(--dark-gray);
+    }
+    
+    .mobile-menu.active {
+      display: block;
+    }
+    
+    .mobile-menu a {
+      display: block;
+      padding: 10px 0;
+      font-family: 'Montserrat', sans-serif;
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 1px;
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid #eee;
+    }
+    
+    body.dark .mobile-menu a {
+      border-bottom-color: #444;
+    }
+    
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+    
+    .lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 80vh;
+    }
+    
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+    }
+    
+    .lightbox-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      font-size: 30px;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+    
+    .lightbox-prev, .lightbox-next {
+      background: none;
+      border: none;
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <span>Đại Thành</span>
+          <span class="highlight">Studio</span>
+        </div>
+        
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#gallery">Thư Viện</a>
+          <a href="#contact">Liên Hệ</a>
+        </div>
+        
+        <div class="nav-actions">
+          <button class="theme-toggle" aria-label="Toggle dark/light theme">
+            <i class="fas fa-moon"></i>
+          </button>
+          
+          <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+    
+    <div class="mobile-menu">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#gallery">Thư Viện</a>
+      <a href="#contact">Liên Hệ</a>
+    </div>
+  </header>
+  
+  <section id="home" class="hero">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1520390138845-fd2d229dd553?q=80&w=3264&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" alt="Photography background">
+    </div>
+    
+    <div class="hero-content container">
+      <h1>Ghi lại khoảnh khắc <span style="color: var(--gold);">Cuộc sống</span></h1>
+      <p>Dịch vụ nhiếp ảnh chuyên nghiệp lưu giữ câu chuyện riêng của bạn qua lăng kính nghệ thuật và tinh tế nhất</p>
+      <a href="#gallery" class="btn">Xem Thư Viện Ảnh</a>
+    </div>
+    
+    <a href="#about" class="scroll-indicator">
+      <p>Scroll Down</p>
+      <i class="fas fa-chevron-down"></i>
+    </a>
+  </section>
+  
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title">Xin Chào</h2>
+      
+      <div class="about-content">
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Photographer at work">
+        </div>
+        
+        <div class="about-text">
+          <h3>Tôi là Đại Thành</h3>
+          <p>nhiếp ảnh gia chuyên nghiệp với hơn 10 năm kinh nghiệm lưu giữ những khoảnh khắc quý giá nhất của cuộc sống. Hành trình đến với nhiếp ảnh của tôi bắt đầu từ niềm đam mê đơn giản: lưu giữ ký ức — và dần trở thành một sự cống hiến trọn đời cho nghệ thuật kể chuyện bằng hình ảnh.</p>
+          
+          <p>Tôi chuyên chụp ảnh cưới, chân dung, phong cảnh và du lịch, mang đến góc nhìn riêng biệt cho từng thể loại.</p>
+          
+          <p>Triết lý của tôi rất đơn giản: mỗi bức ảnh đều phải khơi gợi cảm xúc và kể một câu chuyện mà lời nói không thể diễn đạt. Tôi tin rằng, nhiếp ảnh không chỉ là việc chụp ảnh, mà còn là nghệ thuật kể chuyện.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="gallery" class="section">
+    <div class="container">
+      <h2 class="section-title">Bộ Sưu Tập</h2>
+      
+      <div class="gallery-filters">
+        <button class="filter-btn active" data-filter="all">Tất Cả</button>
+        <button class="filter-btn" data-filter="wedding">Đám Cưới</button>
+        <button class="filter-btn" data-filter="events">Sự Kiện</button>
+        <button class="filter-btn" data-filter="portraits">Chân Dung</button>
+        <button class="filter-btn" data-filter="landscapes">Phong Cảnh</button>
+        <button class="filter-btn" data-filter="travel">Du Lịch</button>
+      </div>
+      
+      <div class="gallery-grid">
+        <!-- Wedding -->
+        <div class="gallery-item" data-category="wedding">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Wedding photography">
+        </div>
+        <div class="gallery-item" data-category="wedding">
+          <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Wedding photography">
+        </div>
+        
+        <!-- Events -->
+        <div class="gallery-item" data-category="events">
+          <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=3269&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Event photography">
+        </div>
+        <div class="gallery-item" data-category="events">
+          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Event photography">
+        </div>
+        
+        <!-- Portraits -->
+        <div class="gallery-item" data-category="portraits">
+          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Portrait photography">
+        </div>
+        <div class="gallery-item" data-category="portraits">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=3164&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Portrait photography">
+        </div>
+        
+        <!-- Landscapes -->
+        <div class="gallery-item" data-category="landscapes">
+          <img src="https://images.unsplash.com/photo-1433477155337-9aea4e790195?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Landscape photography">
+        </div>
+        <div class="gallery-item" data-category="landscapes">
+          <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?q=80&w=3176&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Landscape photography">
+        </div>
+        
+        <!-- Travel -->
+        <div class="gallery-item" data-category="travel">
+          <img src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Travel photography">
+        </div>
+        <div class="gallery-item" data-category="travel">
+          <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Travel photography">
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <div class="back-to-gallery">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+  
+  <div class="lightbox">
+    <button class="lightbox-close">
+      <i class="fas fa-times"></i>
+    </button>
+    
+    <div class="lightbox-content">
+      <img src="" alt="" class="lightbox-img">
+      
+      <div class="lightbox-nav">
+        <button class="lightbox-prev">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="lightbox-next">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <section id="contact" class="section contact">
+    <div class="container">
+      <h2 class="section-title">Liên Hệ</h2>
+      
+      <form class="contact-form">
+        <div class="form-group">
+          <label class="form-label" for="name">Tên</label>
+          <input type="text" id="name" class="form-input" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input type="email" id="email" class="form-input" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="subject">Tiêu Đề</label>
+          <input type="text" id="subject" class="form-input" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="message">Nội dung</label>
+          <textarea id="message" class="form-textarea" required></textarea>
+        </div>
+        
+        <button type="submit" class="submit-btn">Gửi Tin</button>
+      </form>
+    </div>
+  </section>
+  
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h4>Đại Thành Studio</h4>
+          <p>Dịch vụ ghi lại những khoảnh khắc chuyên nghiệp</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Liên Kết</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#gallery">Thư Viện</a></li>
+            <li><a href="#contact">Liên Hệ</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Dịch Vụ</h4>
+          <ul class="footer-links">
+            <li><a href="#gallery" data-filter="wedding">Chụp Hình Cưới</a></li>
+            <li><a href="#gallery" data-filter="events">Chụp Hình Sự Kiện</a></li>
+            <li><a href="#gallery" data-filter="portraits">Ảnh Chân Dung</a></li>
+            <li><a href="#gallery" data-filter="landscapes">Chụp Ngoại Cảnh</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Thông Tin Liên Hệ</h4>
+          <ul class="footer-links">
+            <li><i class="fas fa-map-marker-alt"></i> Đà Nẵng, Việt Nam</li>
+            <li><i class="fas fa-phone"></i> +84 (935) 510 466 </li>
+            <li><i class="fas fa-envelope"></i> info@daithanhstudio.com</li>
+          </ul>
+        </div>
+        
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2025 Đại Thành Studio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    // Theme Toggle
+    const themeToggle = document.querySelector('.theme-toggle');
+    const body = document.body;
+    
+    // Check for saved theme
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark');
+      themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+    
+    themeToggle.addEventListener('click', function() {
+      body.classList.toggle('dark');
+      
+      // Save theme preference
+      if (body.classList.contains('dark')) {
+        localStorage.setItem('theme', 'dark');
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+      } else {
+        localStorage.setItem('theme', 'light');
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+      }
+    });
+    
+    // Mobile Menu
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    mobileMenuBtn.addEventListener('click', function() {
+      mobileMenu.classList.toggle('active');
+      if (mobileMenu.classList.contains('active')) {
+        mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+      } else {
+        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+      }
+    });
+    
+    // Close mobile menu when clicking a menu item
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.remove('active');
+        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+      });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Gallery filters
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Add active class to clicked button
+        this.classList.add('active');
+        
+        const filter = this.getAttribute('data-filter');
+        
+        galleryItems.forEach(item => {
+          if (filter === 'all' || item.getAttribute('data-category') === filter) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+    
+    // Lightbox
+    const lightbox = document.querySelector('.lightbox');
+    const lightboxImg = document.querySelector('.lightbox-img');
+    const lightboxClose = document.querySelector('.lightbox-close');
+    const lightboxPrev = document.querySelector('.lightbox-prev');
+    const lightboxNext = document.querySelector('.lightbox-next');
+    
+    let currentIndex = 0;
+    let visibleItems = [];
+    
+    galleryItems.forEach((item, index) => {
+      item.addEventListener('click', function() {
+        // Find all currently visible items
+        visibleItems = Array.from(galleryItems).filter(item => item.style.display !== 'none');
+        
+        // Find index of clicked item within visible items
+        const clickedItem = this;
+        currentIndex = visibleItems.indexOf(clickedItem);
+        
+        // Show the image in lightbox
+        const imgSrc = clickedItem.querySelector('img').src;
+        const imgAlt = clickedItem.querySelector('img').alt;
+        lightboxImg.src = imgSrc;
+        lightboxImg.alt = imgAlt;
+        
+        // Show lightbox
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    
+    // Close lightbox
+    lightboxClose.addEventListener('click', function() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (!lightbox.classList.contains('active')) return;
+      
+      if (e.key === 'Escape') {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      } else if (e.key === 'ArrowLeft') {
+        showPrevImage();
+      } else if (e.key === 'ArrowRight') {
+        showNextImage();
+      }
+    });
+    
+    // Next and previous image
+    lightboxPrev.addEventListener('click', showPrevImage);
+    lightboxNext.addEventListener('click', showNextImage);
+    
+    function showPrevImage() {
+      currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+      updateLightboxImage();
+    }
+    
+    function showNextImage() {
+      currentIndex = (currentIndex + 1) % visibleItems.length;
+      updateLightboxImage();
+    }
+    
+    function updateLightboxImage() {
+      const imgElement = visibleItems[currentIndex].querySelector('img');
+      lightboxImg.src = imgElement.src;
+      lightboxImg.alt = imgElement.alt;
+    }
+    
+    // Back to gallery button
+    const backToGalleryBtn = document.querySelector('.back-to-gallery');
+    
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 500) {
+        backToGalleryBtn.classList.add('visible');
+      } else {
+        backToGalleryBtn.classList.remove('visible');
+      }
+    });
+    
+    backToGalleryBtn.addEventListener('click', function() {
+      const gallerySection = document.getElementById('gallery');
+      if (gallerySection) {
+        window.scrollTo({
+          top: gallerySection.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      }
+    });
+    
+    // Contact form submission (demonstrative)
+    const contactForm = document.querySelector('.contact-form');
+    
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+      
+      // Here you would normally send the data to a server
+      console.log({name, email, subject, message});
+      
+      // Show success message
+      alert('Thank you for your message! We will get back to you soon.');
+      
+      // Reset form
+      contactForm.reset();
+    });
+  </script>
+</body>
+</html>
